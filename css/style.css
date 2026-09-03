@@ -1,0 +1,19 @@
+/* ===================== RESET DE BASE ===================== */
+/* Chaque navigateur applique des styles par défaut différents (marges, tailles...).
+   Ce petit reset uniformise tout ça pour qu'on parte d'une base propre et prévisible. */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* box-sizing: border-box => les paddings/bordures ne s'ajoutent plus à la largeur d'un élément.
+     C'est LE réglage que 99% des développeurs utilisent, ça évite bien des maux de tête. */
+}
+
+body {
+  font-family: system-ui, sans-serif; /* police temporaire, on la choisira à l'étape 2 */
+  color: #2E2E2E;
+  line-height: 1.6;
+}
+
+/* On ajoutera les vraies couleurs, la typographie et la mise en page à l'étape 2. */

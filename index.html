@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!-- 
+  DOCTYPE : indique au navigateur qu'on utilise le HTML5 moderne.
+  Toujours la toute première ligne d'un fichier HTML.
+-->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <!-- UTF-8 : permet d'afficher correctement les accents (é, è, à...) -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Cette ligne est ESSENTIELLE pour que le site s'adapte aux mobiles.
+       Sans elle, un téléphone affichera le site "zoomé" comme un écran d'ordinateur. -->
+
+  <title>Tisserin BTP — Génie Civil</title>
+  <!-- Ce texte s'affiche dans l'onglet du navigateur et dans Google -->
+
+  <meta name="description" content="Tisserin BTP, entreprise de génie civil : bâtiment, ouvrages d'art et travaux publics par des ingénieurs diplômés.">
+  <!-- La "meta description" : c'est ce que Google affiche sous le titre dans les résultats de recherche -->
+
+  <link rel="stylesheet" href="css/style.css">
+  <!-- On relie notre feuille de style (à écrire à l'étape 2) -->
+</head>
+
+<body>
+
+  <!-- ===================== EN-TÊTE / NAVIGATION ===================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#accueil" class="logo">
+        <!-- Le logo (l'oiseau tisserin) viendra ici en <img> une fois que tu me l'envoies -->
+        <span class="logo-text">Tisserin <strong>BTP</strong></span>
+      </a>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#projets">Réalisations</a></li>
+          <li><a href="#equipe">Équipe</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================== HERO (première section visible) ===================== -->
+    <section id="accueil" class="hero">
+      <div class="container">
+        <h1>Bâtir avec rigueur, concevoir avec précision.</h1>
+        <p class="hero-subtitle">
+          Tisserin BTP est une entreprise de génie civil fondée par des ingénieurs
+          diplômés de l'École BatiSup, spécialisée dans le bâtiment, les ouvrages
+          d'art et les travaux publics.
+        </p>
+        <a href="#contact" class="btn btn-primary">Discuter de votre projet</a>
+      </div>
+    </section>
+
+    <!-- ===================== SERVICES ===================== -->
+    <section id="services" class="services">
+      <div class="container">
+        <h2>Nos domaines d'intervention</h2>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <h3>Bâtiment</h3>
+            <p>Construction de bâtiments résidentiels, commerciaux et industriels, du gros œuvre à la finition.</p>
+          </article>
+
+          <article class="service-card">
+            <h3>Ouvrages d'art</h3>
+            <p>Conception et réalisation de ponts, murs de soutènement et structures spécialisées.</p>
+          </article>
+
+          <article class="service-card">
+            <h3>Terrassement &amp; VRD</h3>
+            <p>Préparation de terrain, voirie et réseaux divers pour tout type de chantier.</p>
+          </article>
+
+          <article class="service-card">
+            <h3>Études &amp; conseil technique</h3>
+            <p>Études de structure, suivi de chantier et accompagnement technique par nos ingénieurs.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== RÉALISATIONS / PROJETS ===================== -->
+    <section id="projets" class="projets">
+      <div class="container">
+        <h2>Nos réalisations</h2>
+
+        <div class="projets-grid">
+          <!-- Chaque projet est une "carte". On en met 3 en exemple pour l'instant.
+               À l'étape 4, ton frère pourra en ajouter/modifier depuis l'admin. -->
+          <article class="projet-card">
+            <div class="projet-image-placeholder">Photo à venir</div>
+            <h3>Nom du projet</h3>
+            <p>Courte description du projet et de son envergure.</p>
+          </article>
+
+          <article class="projet-card">
+            <div class="projet-image-placeholder">Photo à venir</div>
+            <h3>Nom du projet</h3>
+            <p>Courte description du projet et de son envergure.</p>
+          </article>
+
+          <article class="projet-card">
+            <div class="projet-image-placeholder">Photo à venir</div>
+            <h3>Nom du projet</h3>
+            <p>Courte description du projet et de son envergure.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ÉQUIPE ===================== -->
+    <section id="equipe" class="equipe">
+      <div class="container">
+        <h2>L'équipe fondatrice</h2>
+
+        <div class="equipe-grid">
+          <article class="membre-card">
+            <div class="membre-photo-placeholder">Photo</div>
+            <h3>Nom du fondateur 1</h3>
+            <p class="membre-titre">Ingénieur en Génie Civil — École BatiSup</p>
+          </article>
+
+          <article class="membre-card">
+            <div class="membre-photo-placeholder">Photo</div>
+            <h3>Nom du fondateur 2</h3>
+            <p class="membre-titre">Ingénieur en Génie Civil — École BatiSup</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2>Contactez-nous</h2>
+
+        <div class="contact-inner">
+          <form class="contact-form">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Votre projet</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+          </form>
+
+          <div class="contact-infos">
+            <p><strong>Téléphone :</strong> à compléter</p>
+            <p><strong>Email :</strong> à compléter</p>
+            <p><strong>Adresse :</strong> à compléter</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Tisserin BTP. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <!-- Le JS toujours en bas du body : la page se charge avant que le script s'exécute -->
+</body>
+</html>

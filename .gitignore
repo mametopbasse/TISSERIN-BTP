@@ -1,0 +1,11 @@
+# Fichiers de config PHP contenant des mots de passe (à créer plus tard)
+config.php
+.env
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Dépendances (si on en ajoute avec Composer/npm un jour)
+/vendor/
+/node_modules/
