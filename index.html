@@ -24,29 +24,37 @@
 
 <body>
 
-  <!-- ===================== EN-TÊTE / NAVIGATION ===================== -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="#accueil" class="logo">
-        <!-- Le logo (l'oiseau tisserin) viendra ici en <img> une fois que tu me l'envoies -->
-        <span class="logo-text">Tisserin <strong>BTP</strong></span>
-      </a>
-
-      <nav class="main-nav">
-        <ul>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#projets">Réalisations</a></li>
-          <li><a href="#equipe">Équipe</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
   <main>
 
     <!-- ===================== HERO (première section visible) ===================== -->
-    <section id="accueil" class="hero">
+    <!-- Quand tu enverras l'image de fond, on ajoutera la classe "hero--photo" ci-dessous
+         (ex: class="hero hero--photo") : elle bascule le texte en blanc avec un voile marine
+         semi-transparent par-dessus la photo pour que le texte reste lisible. Le CSS est déjà prêt. -->
+   <section id="accueil" class="hero hero--photo">
+      <!-- ===================== EN-TÊTE / NAVIGATION ===================== -->
+      <!-- Placé ICI, à l'intérieur du Hero, avec un fond transparent (voir .site-header
+           en CSS) : il se superpose directement à la photo au lieu d'une barre blanche
+           séparée au-dessus. Il défile avec le Hero (pas de barre fixe en scrollant). -->
+      <header class="site-header">
+        <div class="container header-inner">
+          <a href="#accueil" class="logo">
+            <img src="assets/img/logo-icon.png" alt="" class="logo-icon">
+            <span class="logo-text">Tisserin <strong>BTP</strong></span>
+          </a>
+
+          <nav class="main-nav">
+            <ul>
+              <li><a href="#equipe">Équipe</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#projets">Réalisations</a></li>
+              <li><a href="#partenaires">Partenaires</a></li>
+              <li><a href="#recrutement">Recrutement</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
       <div class="container">
         <h1>Bâtir avec rigueur, concevoir avec précision.</h1>
         <p class="hero-subtitle">
@@ -54,67 +62,15 @@
           diplômés de l'École BatiSup, spécialisée dans le bâtiment, les ouvrages
           d'art et les travaux publics.
         </p>
-        <a href="#contact" class="btn btn-primary">Discuter de votre projet</a>
-      </div>
-    </section>
-
-    <!-- ===================== SERVICES ===================== -->
-    <section id="services" class="services">
-      <div class="container">
-        <h2>Nos domaines d'intervention</h2>
-
-        <div class="services-grid">
-          <article class="service-card">
-            <h3>Bâtiment</h3>
-            <p>Construction de bâtiments résidentiels, commerciaux et industriels, du gros œuvre à la finition.</p>
-          </article>
-
-          <article class="service-card">
-            <h3>Ouvrages d'art</h3>
-            <p>Conception et réalisation de ponts, murs de soutènement et structures spécialisées.</p>
-          </article>
-
-          <article class="service-card">
-            <h3>Terrassement &amp; VRD</h3>
-            <p>Préparation de terrain, voirie et réseaux divers pour tout type de chantier.</p>
-          </article>
-
-          <article class="service-card">
-            <h3>Études &amp; conseil technique</h3>
-            <p>Études de structure, suivi de chantier et accompagnement technique par nos ingénieurs.</p>
-          </article>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Discuter de votre projet</a>
+          <a href="#recrutement" class="btn">Rejoindre l'équipe</a>
         </div>
       </div>
     </section>
 
-    <!-- ===================== RÉALISATIONS / PROJETS ===================== -->
-    <section id="projets" class="projets">
-      <div class="container">
-        <h2>Nos réalisations</h2>
+    <div class="section-divider" aria-hidden="true"></div>
 
-        <div class="projets-grid">
-          <!-- Chaque projet est une "carte". On en met 3 en exemple pour l'instant.
-               À l'étape 4, ton frère pourra en ajouter/modifier depuis l'admin. -->
-          <article class="projet-card">
-            <div class="projet-image-placeholder">Photo à venir</div>
-            <h3>Nom du projet</h3>
-            <p>Courte description du projet et de son envergure.</p>
-          </article>
-
-          <article class="projet-card">
-            <div class="projet-image-placeholder">Photo à venir</div>
-            <h3>Nom du projet</h3>
-            <p>Courte description du projet et de son envergure.</p>
-          </article>
-
-          <article class="projet-card">
-            <div class="projet-image-placeholder">Photo à venir</div>
-            <h3>Nom du projet</h3>
-            <p>Courte description du projet et de son envergure.</p>
-          </article>
-        </div>
-      </div>
-    </section>
 
     <!-- ===================== ÉQUIPE ===================== -->
     <section id="equipe" class="equipe">
@@ -123,19 +79,215 @@
 
         <div class="equipe-grid">
           <article class="membre-card">
-            <div class="membre-photo-placeholder">Photo</div>
-            <h3>Nom du fondateur 1</h3>
-            <p class="membre-titre">Ingénieur en Génie Civil — École BatiSup</p>
+            <div class="membre-photo-placeholder">
+              <img src="assets/img/equipe/Iba.jpeg" alt="Ibrahima Laye Basse">
+            </div>
+            <div class="membre-infos">
+              <h3>Ibrahima Laye Basse</h3>
+              <p class="membre-diplome">Diplôme : Ingénieur en Génie Civil</p>
+              <p class="membre-formation">Formation : École BatiSup</p>
+              <p class="membre-bio">Courte présentation à personnaliser : parcours, spécialité et vision du fondateur.</p>
+            </div>
           </article>
 
           <article class="membre-card">
-            <div class="membre-photo-placeholder">Photo</div>
-            <h3>Nom du fondateur 2</h3>
-            <p class="membre-titre">Ingénieur en Génie Civil — École BatiSup</p>
+            <div class="membre-photo-placeholder">
+              <img src="assets/img/equipe/moussa.jpeg" alt="Moussa Fall">
+            </div>
+            <div class="membre-infos">
+              <h3>Moussa Fall</h3>
+              <p class="membre-diplome">Diplôme : Ingénieur en Génie Civil</p>
+              <p class="membre-formation">Formation : École BatiSup</p>
+              <p class="membre-bio">Courte présentation à personnaliser : parcours, spécialité et vision du fondateur.</p>
+            </div>
           </article>
         </div>
       </div>
     </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
+
+
+    <!-- ===================== SERVICES ===================== -->
+    <section id="services" class="services">
+      <div class="container">
+        <h2>Nos domaines d'intervention</h2>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <h3>Plans béton armé</h3>
+            <p>Études et plans d'exécution en béton armé, conformes aux normes techniques en vigueur.</p>
+          </article>
+
+          <article class="service-card">
+            <h3>Plans 3D</h3>
+            <p>Modélisation 3D de vos projets pour visualiser le résultat avant le début des travaux.</p>
+          </article>
+
+          <article class="service-card">
+            <h3>Plans architecturaux</h3>
+            <p>Conception de plans architecturaux 2D adaptés à votre terrain et à vos besoins.</p>
+          </article>
+
+          <article class="service-card">
+            <h3>Devis &amp; métrés</h3>
+            <p>Chiffrage précis de vos projets et calcul détaillé des quantités de matériaux.</p>
+          </article>
+
+          <article class="service-card">
+            <h3>Suivi de chantier</h3>
+            <p>Accompagnement technique et supervision régulière de l'avancement des travaux.</p>
+          </article>
+
+          <article class="service-card">
+            <h3>Réalisation de projets</h3>
+            <p>Coordination complète des travaux, du lancement jusqu'à la livraison finale.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
+
+
+    <!-- ===================== CHIFFRES CLÉS ===================== -->
+    <!-- Les nombres partent de 0 et comptent jusqu'à data-target quand on arrive sur la section
+         (voir script.js). data-suffix ajoute "%", "+", " ans"... après le nombre. -->
+    <section id="chiffres" class="chiffres">
+      <div class="container">
+        <div class="chiffres-grid">
+          <div class="chiffre">
+            <span class="chiffre-nombre" data-target="15" data-suffix="+">0</span>
+            <span class="chiffre-label">Projets réalisés</span>
+          </div>
+          <div class="chiffre">
+            <span class="chiffre-nombre" data-target="5" data-suffix=" ans">0</span>
+            <span class="chiffre-label">D'expérience cumulée</span>
+          </div>
+          <div class="chiffre">
+            <span class="chiffre-nombre" data-target="98" data-suffix="%">0</span>
+            <span class="chiffre-label">Clients satisfaits</span>
+          </div>
+          <div class="chiffre">
+            <span class="chiffre-nombre" data-target="2" data-suffix="">0</span>
+            <span class="chiffre-label">Ingénieurs diplômés BatiSup</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
+
+
+    <!-- ===================== RÉALISATIONS / PROJETS ===================== -->
+    <section id="projets" class="projets">
+      <div class="container">
+        <h2>Nos réalisations</h2>
+
+        <!-- Le carrousel : deux flèches + une piste (.projets-grid) qui défile horizontalement.
+             On met 6 exemples pour bien voir l'effet de défilement quand il y a beaucoup de projets. -->
+        <div class="projets-carousel">
+          <button class="carousel-btn carousel-prev" type="button" aria-label="Réalisation précédente">&#8592;</button>
+
+          <div class="projets-grid" id="projetsTrack">
+            <article class="projet-card">
+              <div class="projet-media">
+                <!-- Photo : <img src="assets/img/projets/mon-projet.jpg" alt="..."> -->
+                <!-- Vidéo : <video src="assets/img/projets/ma-video.mp4" controls></video> -->
+                <span class="projet-media-placeholder"><video src="assets/img/projets/P2.mp4" controls></video></span>
+              </div>
+              <h3>Projet 1</h3>
+              <p>Courte description du projet et de son envergure.</p>
+            </article>
+
+            <article class="projet-card">
+              <div class="projet-media">
+                <span class="projet-media-placeholder"><img src="assets/img/projets/P1.jpeg" alt="Projet1">
+                <img src="assets/img/projets/P1.jpeg" alt="Projet1" hidden></span>
+              </div>
+              <h3>Projet 2</h3>
+              <p>Courte description du projet et de son envergure.</p>
+            </article>
+
+            <article class="projet-card">
+              <div class="projet-media">
+                <span class="projet-media-placeholder"><video src="assets/img/projets/P3.mp4" controls></video></span>
+              </div>
+              <h3>Projet 3</h3>
+              <p>Courte description du projet et de son envergure.</p>
+            </article>
+
+            <article class="projet-card">
+              <div class="projet-media">
+                <span class="projet-media-placeholder">Photo ou vidéo à venir</span>
+              </div>
+              <h3>Projet 4</h3>
+              <p>Courte description du projet et de son envergure.</p>
+            </article>
+
+            <article class="projet-card">
+              <div class="projet-media">
+                <span class="projet-media-placeholder">Photo ou vidéo à venir</span>
+              </div>
+              <h3>Projet 5</h3>
+              <p>Courte description du projet et de son envergure.</p>
+            </article>
+
+            <article class="projet-card">
+              <div class="projet-media">
+                <span class="projet-media-placeholder">Photo ou vidéo à venir</span>
+              </div>
+              <h3>Projet 6</h3>
+              <p>Courte description du projet et de son envergure.</p>
+            </article>
+          </div>
+
+          <button class="carousel-btn carousel-next" type="button" aria-label="Réalisation suivante">&#8594;</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
+
+
+    <!-- ===================== PARTENAIRES ===================== -->
+    <section id="partenaires" class="partenaires">
+      <div class="container">
+        <h2>Nos partenaires</h2>
+        <p class="partenaires-intro">Tisserin BTP collabore avec des entreprises et bureaux d'études partenaires sur ses projets.</p>
+
+        <div class="partenaires-grid">
+          <!-- Remplacer chaque bloc par : <img src="assets/img/partenaires/logo-xyz.png" alt="Nom de l'entreprise"> -->
+          <div class="partenaire-logo">Logo partenaire</div>
+          <div class="partenaire-logo">Logo partenaire</div>
+          <div class="partenaire-logo">Logo partenaire</div>
+          <div class="partenaire-logo">Logo partenaire</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
+
+
+    <!-- ===================== RECRUTEMENT / STAGES ===================== -->
+    <section id="recrutement" class="recrutement">
+      <div class="container">
+        <h2>Rejoindre l'équipe</h2>
+        <p class="recrutement-intro">
+          Ingénieur, technicien ou étudiant en recherche de stage ? Déposez votre
+          candidature et votre CV via notre formulaire — nous étudions chaque
+          profil avec attention.
+        </p>
+
+        <!-- ⚠️ Remplace ce lien par l'URL de ton Google Form une fois créé (voir les étapes données) -->
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScmEuUxqBs3-zTEEsAhakAXI5-FZhFjxMY9opvRQvpnzynuog/viewform?usp=header" class="btn btn-primary" target="_blank" rel="noopener">
+          Déposer ma candidature
+        </a>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
+
 
     <!-- ===================== CONTACT ===================== -->
     <section id="contact" class="contact">
@@ -143,7 +295,7 @@
         <h2>Contactez-nous</h2>
 
         <div class="contact-inner">
-          <form class="contact-form">
+          <form class="contact-form" id="contactForm">
             <label for="nom">Nom</label>
             <input type="text" id="nom" name="nom" required>
 
@@ -157,15 +309,47 @@
           </form>
 
           <div class="contact-infos">
-            <p><strong>Téléphone :</strong> à compléter</p>
-            <p><strong>Email :</strong> à compléter</p>
-            <p><strong>Adresse :</strong> à compléter</p>
+            <!-- Remplace ces numéros/email par les vôtres s'ils changent un jour -->
+            <div class="contact-info-block">
+              <strong>Téléphone</strong>
+              <p class="contact-phone-number">+221 77 422 64 76</p>
+              <div class="contact-phone-actions">
+                <a href="tel:+221774226476" class="contact-action-link">Appeler</a>
+                <a href="https://wa.me/221774226476" class="contact-action-link" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+
+            <div class="contact-info-block">
+              <p class="contact-phone-number">+221 77 611 79 35</p>
+              <div class="contact-phone-actions">
+                <a href="tel:+221776117935" class="contact-action-link">Appeler</a>
+                <a href="https://wa.me/221776117935" class="contact-action-link" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+
+            <div class="contact-info-block">
+              <strong>Email</strong>
+              <!-- Ce lien ouvre un brouillon dans Gmail (onglet web), adresse déjà remplie -->
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@tisserin-btp.com" class="contact-email-link confirm-envoi" target="_blank" rel="noopener">contact@tisserin-btp.com</a>
+            </div>
+
+            <div class="contact-info-block">
+              <strong>Adresse</strong>
+              <p class="contact-address">à compléter</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
   </main>
+
+  <!-- ===================== LIGHTBOX (agrandissement des photos/vidéos) ===================== -->
+  <!-- Une seule boîte pour tout le site : le JS y copie l'image/vidéo cliquée. -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Fermer">&times;</button>
+    <div class="lightbox-content" id="lightboxContent"></div>
+  </div>
 
   <!-- ===================== FOOTER ===================== -->
   <footer class="site-footer">

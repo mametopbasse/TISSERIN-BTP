@@ -1,19 +1,927 @@
-/* ===================== RESET DE BASE ===================== */
-/* Chaque navigateur applique des styles par défaut différents (marges, tailles...).
-   Ce petit reset uniformise tout ça pour qu'on parte d'une base propre et prévisible. */
+/* ===================== VARIABLES DE COULEUR ===================== */
+/* On centralise toutes les couleurs ici. Si un jour vous voulez ajuster
+   une teinte, on change une seule ligne au lieu de fouiller tout le fichier. */
+:root {
+  --color-navy: #081B2A;       /* bleu marine du logo : titres, texte fort */
+  --color-gold: #B09553;       /* doré du logo : accents, lignes, boutons */
+  --color-gold-light: #C7AD73; /* doré plus clair : hover */
+  --color-bg: #FFFFFF;         /* fond : toujours blanc, jamais coloré */
+  --color-text: #1C1C1C;       /* texte courant */
+  --color-text-muted: #5C5C5C; /* texte secondaire (sous-titres, légendes) */
+  --color-line: #DCD5C7;       /* lignes fines discrètes (pas dorées) */
 
+  --font-serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --container-width: 1120px;
+}
+
+/* ===================== RESET DE BASE ===================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* box-sizing: border-box => les paddings/bordures ne s'ajoutent plus à la largeur d'un élément.
-     C'est LE réglage que 99% des développeurs utilisent, ça évite bien des maux de tête. */
 }
 
 body {
-  font-family: system-ui, sans-serif; /* police temporaire, on la choisira à l'étape 2 */
-  color: #2E2E2E;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-bg);
   line-height: 1.6;
 }
 
-/* On ajoutera les vraies couleurs, la typographie et la mise en page à l'étape 2. */
+img { max-width: 100%; display: block; }
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  color: var(--color-navy);
+  font-weight: 400; /* le serif porte déjà assez de caractère, pas besoin de gras excessif */
+  line-height: 1.25;
+}
+
+a { color: var(--color-navy); text-decoration: none; }
+
+/* ===================== BOUTONS ===================== */
+/* Jamais de fond plein : juste un contour doré et du texte.
+   Au survol, seule l'épaisseur/la couleur réagit — pas de remplissage. */
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border: 1px solid var(--color-gold);
+  color: var(--color-navy);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  background: transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover {
+  border-color: var(--color-navy);
+  color: var(--color-gold);
+}
+
+/* ===================== EN-TÊTE ===================== */
+/* Superposé sur la photo du Hero (position absolute + fond transparent),
+   au lieu d'une barre blanche séparée au-dessus. Il défile avec le Hero. */
+.site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2; /* au-dessus du voile sombre (::before) et du texte du Hero */
+  background: transparent;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  height: 44px;
+  width: auto;
+}
+
+.logo-text {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+.logo-text strong {
+  color: var(--color-gold);
+  font-weight: 400;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.main-nav a {
+  color: #fff;
+  font-size: 0.95rem;
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.main-nav a:hover {
+  color: var(--color-gold);
+  border-bottom-color: var(--color-gold);
+}
+
+/* ===================== HERO ===================== */
+.hero {
+  padding: 170px 0 120px;
+  background-image: url('../assets/img/Tisserin.jpg');
+}
+
+.hero h1 {
+  font-size: 2.75rem;
+  max-width: 14ch;
+  margin-bottom: 24px;
+  position: relative;
+  padding-bottom: 24px;
+}
+
+/* Le trait doré sous le titre : notre "signature" visuelle, présente une seule fois */
+.hero h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 64px;
+  height: 2px;
+  background: var(--color-gold);
+}
+
+.hero-subtitle {
+  max-width: 52ch;
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+/* ===================== SECTIONS (règle commune) ===================== */
+/* Note : la ligne de séparation entre sections n'est plus une bordure CSS statique,
+   c'est désormais l'élément .section-divider (voir plus bas), qui s'anime
+   du centre vers l'extérieur quand on le fait défiler à l'écran. */
+section:not(.hero) {
+  padding: 96px 0;
+}
+
+section h2 {
+  font-size: 1.9rem;
+  margin-bottom: 56px;
+}
+
+/* ===================== SERVICES ===================== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--color-line);
+  border: 1px solid var(--color-line);
+}
+
+.service-card {
+  background: var(--color-bg);
+  padding: 36px;
+}
+
+.service-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+}
+
+.service-card p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+/* ===================== ÉQUIPE (mise en page générale de la grille) ===================== */
+/* Le détail visuel de chaque carte (.membre-card, .membre-photo-placeholder...)
+   est défini plus bas, dans le bloc "ÉQUIPE : rectangle photo + infos côte à côte" */
+.equipe-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+/* ===================== CONTACT ===================== */
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 64px;
+}
+
+/* Champs "underline" : pas de fond, juste une ligne du bas — cohérent avec le reste */
+.contact-form label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-top: 20px;
+  margin-bottom: 6px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--color-line);
+  background: transparent;
+  padding: 8px 0;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-bottom-color: var(--color-gold);
+}
+
+.contact-form button {
+  margin-top: 32px;
+  cursor: pointer;
+}
+
+.contact-info-block {
+  margin-bottom: 28px;
+}
+
+.contact-info-block strong {
+  color: var(--color-navy);
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+}
+
+/* ===================== FOOTER ===================== */
+.site-footer {
+  padding: 32px 0;
+}
+
+.site-footer p {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* ===================== PRÉPARATION FOND PHOTO DU HERO ===================== */
+/* Inactif pour l'instant. Le jour où tu ajoutes ta photo :
+   1) Ajoute background-image: url('../assets/img/hero-bg.jpg'); dans la règle .hero ci-dessous
+      (le "../" est important : on remonte du dossier css/ vers la racine du projet)
+   2) Ajoute la classe "hero--photo" sur la section dans index.html
+   Tout le reste (voile sombre, texte blanc) s'active automatiquement. */
+.hero {
+  position: relative;
+  background-color: var(--color-navy);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero.hero--photo {
+  color: #fff;
+}
+
+.hero.hero--photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 27, 42, 0.78), rgba(8, 27, 42, 0.55));
+  z-index: 0;
+}
+
+.hero.hero--photo .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero.hero--photo h1,
+.hero.hero--photo .hero-subtitle {
+  color: #fff;
+}
+
+/* ===================== CHIFFRES CLÉS (compteurs animés) ===================== */
+.chiffres-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  text-align: center;
+}
+
+.chiffre {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chiffre-nombre {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  color: var(--color-navy);
+}
+
+.chiffre-label {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+/* ===================== CARROUSEL DES RÉALISATIONS ===================== */
+.projets-carousel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.carousel-btn {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold);
+  background: transparent;
+  color: var(--color-navy);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.carousel-btn:hover {
+  border-color: var(--color-navy);
+  color: var(--color-gold);
+}
+
+/* La piste défile horizontalement ; scroll-snap fait que chaque carte "s'accroche"
+   proprement en position, comme un vrai carrousel, sans JS compliqué pour l'alignement. */
+.projets-grid {
+  display: flex;
+  gap: 32px;
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 4px; /* évite que l'ombre du zoom soit coupée au bord */
+}
+
+/* Masquer la barre de défilement (on a déjà les flèches, pas besoin de la voir) */
+.projets-grid::-webkit-scrollbar { display: none; }
+.projets-grid { scrollbar-width: none; }
+
+.projet-card {
+  flex: 0 0 300px;
+  scroll-snap-align: start;
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.projet-media {
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  overflow: hidden; /* essentiel : empêche une image plus grande que 4:3 de déformer la carte */
+  background: var(--color-bg);
+  border-radius: 12px 12px 0 0;
+  position: relative; /* nécessaire pour positionner l'icône de zoom ci-dessous */
+}
+
+/* Icône loupe : indique clairement que l'image/vidéo est cliquable. Visible en
+   permanence (discrètement), et se met en évidence au survol. La pseudo-classe
+   :has() fait que l'icône n'apparaît QUE s'il y a une vraie image/vidéo dedans —
+   pas sur les cartes encore vides ("Photo ou vidéo à venir"). */
+.projet-media:has(img, video)::after {
+  content: "🔍";
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(8, 27, 42, 0.65);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none; /* l'icône ne doit jamais bloquer le clic sur l'image en dessous */
+}
+
+.projet-media:has(img, video):hover::after {
+  opacity: 1;
+  transform: scale(1.12);
+}
+
+.projet-media img,
+.projet-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+}
+
+.projet-card h3 {
+  font-size: 1.05rem;
+  padding: 20px 20px 4px;
+}
+
+.projet-card p {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  padding: 0 20px 20px;
+}
+
+/* ===================== ÉQUIPE : rectangle photo + infos côte à côte ===================== */
+.membre-card {
+  display: flex;
+  gap: 24px;
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.membre-photo-placeholder {
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+  border: 1px solid var(--color-gold);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.membre-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.membre-infos h3 {
+  font-size: 1.15rem;
+  margin-bottom: 4px;
+}
+
+.membre-diplome,
+.membre-formation {
+  font-size: 0.85rem;
+  color: var(--color-gold);
+}
+
+.membre-bio {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+/* ===================== CONTACT : fond bleu marine ===================== */
+/* "section.contact" (et pas juste ".contact") pour être sûr que ces règles l'emportent
+   sur la règle générale "section:not(.hero)" définie plus haut dans le fichier. */
+section.contact {
+  background: var(--color-navy);
+  color: #F4F1EA;
+}
+
+section.contact h2 {
+  color: var(--color-gold);
+}
+
+.contact-form label {
+  color: #AEB9C4;
+}
+
+.contact-form input,
+.contact-form textarea {
+  color: #F7F6F2;
+  border-bottom: 1px solid rgba(247, 246, 242, 0.3);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-bottom-color: var(--color-gold);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(247, 246, 242, 0.4);
+}
+
+.contact-form .btn {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+.contact-form .btn:hover {
+  border-color: #fff;
+  color: #fff;
+}
+
+.contact-info-block strong {
+  color: var(--color-gold);
+}
+
+.contact-phone-number {
+  color: #F4F1EA;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.contact-phone-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* Petits liens en forme de pilule, contour doré, cohérents avec le reste du site
+   (jamais de fond plein) : "Appeler" déclenche l'app téléphone, "WhatsApp" ouvre
+   une discussion avec ce numéro. */
+.contact-action-link {
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.contact-action-link:hover {
+  border-color: #fff;
+  color: #fff;
+}
+
+.contact-email-link {
+  color: #F4F1EA;
+  text-decoration: underline;
+  text-decoration-color: var(--color-gold);
+  text-underline-offset: 4px;
+}
+
+.contact-email-link:hover {
+  color: var(--color-gold);
+}
+
+.contact-address {
+  color: #AEB9C4;
+}
+
+/* ===================== TRANSITIONS AU DÉFILEMENT (scroll reveal) ===================== */
+/* La classe .reveal est ajoutée dynamiquement par le JS à plusieurs éléments.
+   Ils démarrent invisibles/légèrement décalés, puis "apparaissent" quand on
+   arrive dessus en scrollant (voir IntersectionObserver dans script.js). */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Les gens sensibles au mouvement peuvent désactiver les animations dans leur OS :
+   on respecte ce choix en supprimant la transition dans ce cas. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ===================== HERO : deux boutons côte à côte ===================== */
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Les 2 boutons du hero doivent être bien visibles dès le départ : texte blanc sur
+   le fond sombre de la photo, doré au survol. */
+.hero-actions .btn {
+  color: #fff;
+}
+
+.hero-actions .btn:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+/* ===================== PARTENAIRES ===================== */
+.partenaires-intro {
+  color: var(--color-text-muted);
+  max-width: 60ch;
+  margin-bottom: 48px;
+}
+
+.partenaires-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.partenaire-logo {
+  aspect-ratio: 3 / 2;
+  border: 1px solid var(--color-line);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 16px;
+}
+
+/* Une fois un vrai logo <img> à la place du texte, on l'affiche en gris (grayscale)
+   et il reprend sa couleur au survol : discret par défaut, vivant à l'interaction. */
+.partenaire-logo img {
+  max-height: 48px;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.partenaire-logo img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* ===================== RECRUTEMENT ===================== */
+.recrutement-intro {
+  color: var(--color-text-muted);
+  max-width: 60ch;
+  margin-bottom: 40px;
+}
+
+.recrutement-form {
+  max-width: 640px;
+}
+
+.recrutement-form label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-top: 20px;
+  margin-bottom: 6px;
+}
+
+.recrutement-form input,
+.recrutement-form select,
+.recrutement-form textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--color-line);
+  background: transparent;
+  padding: 8px 0;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.recrutement-form select {
+  cursor: pointer;
+}
+
+/* Le bouton natif de sélection de fichier est stylisé à part car les navigateurs
+   ne le laissent pas se personnaliser comme un champ texte classique. */
+.recrutement-form input[type="file"] {
+  border: 1px dashed var(--color-line);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 0.9rem;
+}
+
+.recrutement-form input:focus,
+.recrutement-form select:focus,
+.recrutement-form textarea:focus {
+  outline: none;
+  border-bottom-color: var(--color-gold);
+}
+
+.recrutement-form input[type="file"]:focus {
+  outline: none;
+  border-color: var(--color-gold);
+}
+
+.recrutement-form button {
+  margin-top: 32px;
+  cursor: pointer;
+}
+
+/* Deux champs par ligne sur desktop (Nom/Email, Téléphone/Type) */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* ===================== TRAIT ANIMÉ SOUS LE TITRE DU HERO ===================== */
+/* transform-origin: center + une animation qui part de scaleX(0) : le trait
+   "pousse" depuis son centre vers ses deux extrémités au chargement de la page. */
+@keyframes pousserDuCentre {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.hero h1::after {
+  transform-origin: center;
+  animation: pousserDuCentre 1s ease-out 0.3s both;
+  /* "both" : le trait reste invisible (scaleX(0)) pendant les 0.3s d'attente
+     avant que l'animation ne démarre, au lieu d'apparaître d'un coup puis de s'animer. */
+}
+
+/* ===================== LIGNES DE SÉPARATION ENTRE SECTIONS ===================== */
+/* Ces lignes remplacent les anciennes bordures statiques. Au chargement elles sont
+   "écrasées" (scaleX(0)), centrées grâce à transform-origin:center, puis le JS leur
+   ajoute .divider-visible quand elles entrent dans l'écran : elles poussent alors
+   du milieu vers l'extérieur. La classe est retirée quand la ligne quitte l'écran,
+   donc l'animation se rejoue à chaque passage, dans un sens comme dans l'autre. */
+.section-divider {
+  height: 1px;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  background: var(--color-line);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.8s ease;
+}
+
+.section-divider.divider-visible {
+  transform: scaleX(1);
+}
+
+/* ===================== PHOTOS DES FONDATEURS (préparation) ===================== */
+.membre-photo-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px; /* même arrondi que le conteneur, pour un rendu propre */
+}
+
+/* ===================== LIGHTBOX (agrandissement photos/vidéos) ===================== */
+/* position:fixed + inset:0 = couvre tout l'écran, peu importe où on a scrollé sur la page. */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 27, 42, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 90vw;
+  max-height: 85vh;
+}
+
+.lightbox-main {
+  flex: 1;
+  min-width: 0; /* évite que l'image ne force le conteneur à s'agrandir au-delà de l'écran */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-content img,
+.lightbox-content video {
+  display: block;
+  max-width: 75vw;
+  max-height: 85vh;
+  border-radius: 12px;
+}
+
+/* La zone de vignettes à droite de l'image/vidéo principale : disposées en ligne,
+   elles retournent automatiquement à la ligne suivante si la largeur est pleine
+   (flex-wrap), plutôt que de s'empiler dans une seule colonne. */
+.lightbox-thumbs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 200px;
+  max-height: 85vh;
+  overflow-y: auto;
+  flex-shrink: 0;
+  align-content: flex-start;
+}
+
+.lightbox-thumb {
+  width: 90px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.55;
+  border: 2px solid transparent;
+  flex-shrink: 0;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+  /* pour les vidéos sans vignette naturelle : fond sombre + repère visuel */
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.75rem;
+}
+
+.lightbox-thumb.is-active {
+  opacity: 1;
+  border-color: var(--color-gold);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold);
+  background: transparent;
+  color: var(--color-gold);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.lightbox-close:hover {
+  border-color: #fff;
+  color: #fff;
+}
+
+/* ===================== ENVOI DU CV (WhatsApp / email) ===================== */
+.recrutement-cv {
+  max-width: 640px;
+  margin-top: 24px;
+}
+
+.recrutement-cv p {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.recrutement-cv-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Réutilise le même style de "pilule" que les liens Appeler/WhatsApp de la section Contact,
+   mais adapté aux couleurs du fond clair (bordure/texte marine ici, doré sur fond bleu là-bas). */
+.recrutement-cv .contact-action-link {
+  border-color: var(--color-navy);
+  color: var(--color-navy);
+}
+
+.recrutement-cv .contact-action-link:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+/* ===================== CONTACT : invitation directe par email (sans formulaire) ===================== */
+.contact-message-cta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.contact-message-cta p {
+  font-size: 1.1rem;
+  color: #F4F1EA;
+  max-width: 36ch;
+}
+
+.contact-message-cta .btn {
+  align-self: flex-start;
+}
+
+/* ===================== LIEN "DISCUTER DE VOTRE PROJET PAR EMAIL" ===================== */
+/* Ciblé par son adresse (attribut href) plutôt que par une classe, pour être sûr
+   que ça s'applique peu importe où ce lien se trouve exactement dans la page. */
+a[href*="su=Nouveau%20projet"] {
+  color: #fff;
+}
