@@ -421,6 +421,7 @@ section h2 {
   height: 100%;
   object-fit: cover;
   border-radius: 12px 12px 0 0;
+  background: var(--color-navy); /* évite un blanc criard tant qu'une vidéo n'a pas de poster */
 }
 
 /* Seul le tout premier média (image ou vidéo) d'un projet s'affiche sur la carte.
