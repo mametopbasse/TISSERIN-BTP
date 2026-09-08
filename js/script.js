@@ -248,6 +248,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ===================== MENU MOBILE (hamburger) =====================
+  const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  if (navToggle && mainNav) {
+    navToggle.addEventListener('click', () => {
+      const estOuvert = mainNav.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', estOuvert);
+    });
+
+    // Refermer automatiquement le menu quand on clique un lien (on va vers une section)
+    mainNav.querySelectorAll('a').forEach((lien) => {
+      lien.addEventListener('click', () => {
+        mainNav.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
   // ===================== CONFIRMATION D'ENVOI (email / WhatsApp) =====================
   // Ces liens ouvrent l'application mail ou WhatsApp du visiteur avec le message prêt ;
   // c'est ensuite à LUI de cliquer sur "Envoyer" dans son application. On ne peut pas

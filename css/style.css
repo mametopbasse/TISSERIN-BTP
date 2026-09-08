@@ -425,6 +425,15 @@ section h2 {
   border-radius: 12px 12px 0 0;
 }
 
+/* Seul le tout premier média (image ou vidéo) d'un projet s'affiche sur la carte.
+   Tous les suivants sont automatiquement cachés ici, en CSS — inutile d'ajouter
+   l'attribut "hidden" dans le HTML, ça fonctionne même si tu l'oublies. Ils restent
+   quand même récupérés par le JS pour alimenter la galerie au clic. */
+.projet-media img:not(:first-child),
+.projet-media video:not(:first-child) {
+  display: none;
+}
+
 .projet-card h3 {
   font-size: 1.05rem;
   padding: 20px 20px 4px;
@@ -924,4 +933,138 @@ section.contact h2 {
    que ça s'applique peu importe où ce lien se trouve exactement dans la page. */
 a[href*="su=Nouveau%20projet"] {
   color: #fff;
+}
+
+/* ===================== BOUTON HAMBURGER (mobile uniquement) ===================== */
+.nav-toggle {
+  display: none; /* invisible sur ordinateur, réactivé dans la media query mobile */
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+/* ===================== RESPONSIVE MOBILE (moins de 768px de large) ===================== */
+@media (max-width: 768px) {
+
+  /* --- Header / navigation : menu hamburger plein écran --- */
+  .nav-toggle {
+    display: flex;
+  }
+
+  .main-nav {
+    position: fixed;
+    inset: 0; /* raccourci pour top:0; right:0; bottom:0; left:0; */
+    background: var(--color-navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    z-index: 5;
+  }
+
+  .main-nav.is-open {
+    transform: translateY(0);
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .main-nav a {
+    font-size: 1.4rem;
+  }
+
+  /* --- Hero : titre plus petit, header sur une seule ligne désormais --- */
+  .hero {
+    padding: 110px 0 80px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .btn {
+    text-align: center;
+  }
+
+  /* --- Toutes les grilles à plusieurs colonnes passent à 1 ou 2 colonnes --- */
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .equipe-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .membre-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .membre-photo-placeholder {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  .chiffres-grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 32px;
+  }
+
+  .partenaires-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* --- Carrousel des réalisations : on cache les flèches, le visiteur balaie
+         du doigt directement sur la piste (comportement natif tactile) --- */
+  .carousel-btn {
+    display: none;
+  }
+
+  .projet-card {
+    flex-basis: 260px;
+  }
+
+  /* --- Contact : le formulaire et les coordonnées s'empilent --- */
+  .contact-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- Lightbox galerie : vignettes en dessous plutôt qu'à droite (plus de place) --- */
+  .lightbox-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lightbox-thumbs {
+    max-width: 100%;
+    justify-content: center;
+  }
 }
