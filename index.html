@@ -42,7 +42,7 @@
             <span class="logo-text">Tisserin <strong>BTP</strong></span>
           </a>
 
-          <nav class="main-nav">
+          <nav class="main-nav" id="mainNav">
             <ul>
               <li><a href="#equipe">Équipe</a></li>
               <li><a href="#services">Services</a></li>
@@ -52,6 +52,10 @@
               <li><a href="#contact">Contact</a></li>
             </ul>
           </nav>
+
+          <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
         </div>
       </header>
 
@@ -192,10 +196,8 @@
           <div class="projets-grid" id="projetsTrack">
             <article class="projet-card">
               <div class="projet-media">
-                <!-- Photo : <img src="assets/img/projets/mon-projet.jpg" alt="..."> -->
-                <!-- Vidéo : <video src="assets/img/projets/ma-video.mp4" controls></video> -->
-                <span class="projet-media-placeholder"><video src="assets/img/projets/P2.mp4" controls></video></span>
-                <img src="assets/img/projets/P4.jpeg" alt="Projet1">
+                <video src="assets/img/projets/P2.mp4" controls></video>
+                <img src="assets/img/projets/P4.jpeg" alt="Projet 1">
               </div>
               <h3>Projet 1</h3>
               <p>Courte description du projet et de son envergure.</p>
@@ -203,8 +205,8 @@
 
             <article class="projet-card">
               <div class="projet-media">
-                <span class="projet-media-placeholder"><img src="assets/img/projets/P1.jpeg" alt="Projet1">
-                <img src="assets/img/projets/P4.jpeg" alt="Projet1"></span>
+                <img src="assets/img/projets/P1.jpeg" alt="Projet 2">
+                <img src="assets/img/projets/P4.jpeg" alt="Projet 2">
               </div>
               <h3>Projet 2</h3>
               <p>Courte description du projet et de son envergure.</p>
@@ -212,7 +214,7 @@
 
             <article class="projet-card">
               <div class="projet-media">
-                <span class="projet-media-placeholder"><video src="assets/img/projets/P3.mp4" controls></video></span>
+                <video src="assets/img/projets/P3.mp4" controls></video>
               </div>
               <h3>Projet 3</h3>
               <p>Courte description du projet et de son envergure.</p>
@@ -336,7 +338,7 @@
 
             <div class="contact-info-block">
               <strong>Adresse</strong>
-              <p class="contact-address">à compléter</p>
+              <p class="contact-address">Sicap Liberté 2</p>
             </div>
           </div>
         </div>
