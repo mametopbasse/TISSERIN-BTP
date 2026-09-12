@@ -536,12 +536,6 @@ section.contact h2 {
   color: var(--color-gold);
 }
 
-.contact-phone-number {
-  color: #F4F1EA;
-  font-size: 1rem;
-  margin-bottom: 10px;
-}
-
 .contact-phone-actions {
   display: flex;
   gap: 12px;
@@ -1065,12 +1059,5 @@ a[href*="su=Nouveau%20projet"] {
   .lightbox-thumbs {
     max-width: 100%;
     justify-content: center;
-  }
-
-  /* Filet de sécurité : garantit l'affichage des numéros quoi qu'il arrive */
-  .contact-phone-number {
-    color: #F4F1EA !important;
-    display: block !important;
-    opacity: 1 !important;
   }
 }
